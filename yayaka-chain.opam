@@ -1,0 +1,17 @@
+opam-version: "2.0"
+version: "0.1.0"
+maintainer: "ryo33@yayaka.org"
+authors: ["Ryo Hashiguchi <ryo33@yayaka.org>"]
+license: "AGPL"
+bug-reports: "https://gitlib.com/yayaka/yayaka-chain/issues"
+homepage: "https://gitlib.com/yayaka/yayaka-chain"
+build-test: [
+  "dune runtest"
+]
+depends: [
+  "dune" {build}
+  "alcotest" {test}
+  "core"
+  "digestif"
+]
+synopsis: "Manipulates yayaka-chains"

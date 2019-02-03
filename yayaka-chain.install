@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/yayaka-chain/META" {"META"}
+  "_build/install/default/lib/yayaka-chain/opam" {"opam"}
+]
+doc: [
+  "_build/install/default/doc/yayaka-chain/LICENSE"
+  "_build/install/default/doc/yayaka-chain/README.md"
+]
