@@ -1,3 +1,1 @@
-type t = {
-  algorithm : string;
-  body : string }
+type t = { algorithm : string; body : string }

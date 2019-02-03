@@ -1,3 +1,3 @@
 (tests
-  (names test)
+  (names test power_test)
   (libraries alcotest yayakaChain))
