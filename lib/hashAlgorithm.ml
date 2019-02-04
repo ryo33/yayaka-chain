@@ -1,12 +1,12 @@
 type t =
-  | SHA1
-  | SHA2
+  | Sha1
+  | Sha256
 
 let from_string = function
-  | "SHA-1" -> Some SHA1
-  | "SHA-2" -> Some SHA2
+  | "Sha-1" -> Some Sha1
+  | "Sha-2" -> Some Sha256
   | _ -> None
 
 let to_string = function
-  | SHA1 -> "SHA-1"
-  | SHA2 -> "SHA-2"
+  | Sha1 -> "Sha-1"
+  | Sha256 -> "Sha-2"
