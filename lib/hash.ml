@@ -19,3 +19,6 @@ let hash algorithm text =
     let cmd = Cmd.(v "openssl" % "dgst" % "-sha256" % "-hex") in
     let result = OS.Cmd.(run_io cmd (in_string text) |> to_string) in
     { algorithm = algorithm; hash = unwrap result }
+
+let format { algorithm; hash } =
+  HashAlgorithm.to_string algorithm, Base64.encode_exn hash
