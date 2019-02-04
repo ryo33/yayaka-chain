@@ -2,7 +2,7 @@ type t =
   | Sha1
   | Sha256
 
-let from_string = function
+let of_string = function
   | "Sha-1" -> Some Sha1
   | "Sha-2" -> Some Sha256
   | _ -> None

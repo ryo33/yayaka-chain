@@ -4,17 +4,17 @@ module Test = Alcotest
 
 let to_int_option = Option.map ~f:Power.to_int
 let to_power value =
-  match (Power.from_int value) with
+  match (Power.of_int value) with
   | Some power -> power
   | _ -> raise (Failure "")
 
-let test_from_int () =
-  Test.(check (option int)) "0" (Some 0) (to_int_option (Power.from_int 0));
-  Test.(check (option int)) "1,000,000" (Some 1000000) (to_int_option (Power.from_int 1000000));
-  Test.(check (option int)) "2 ^ 31 - 1" (Some 2147483647) (to_int_option (Power.from_int 2147483647));
-  Test.(check (option int)) "2 ^ 31" None (to_int_option (Power.from_int 2147483648));
-  Test.(check (option int)) "-1" None (to_int_option (Power.from_int ~- 1));
-  Test.(check (option int)) "-1,000,000" None (to_int_option (Power.from_int ~- 1000000))
+let test_of_int () =
+  Test.(check (option int)) "0" (Some 0) (to_int_option (Power.of_int 0));
+  Test.(check (option int)) "1,000,000" (Some 1000000) (to_int_option (Power.of_int 1000000));
+  Test.(check (option int)) "2 ^ 31 - 1" (Some 2147483647) (to_int_option (Power.of_int 2147483647));
+  Test.(check (option int)) "2 ^ 31" None (to_int_option (Power.of_int 2147483648));
+  Test.(check (option int)) "-1" None (to_int_option (Power.of_int ~- 1));
+  Test.(check (option int)) "-1,000,000" None (to_int_option (Power.of_int ~- 1000000))
 
 let test_to_int () =
   Test.(check int) "0" 0 (Power.to_int (to_power 0));
@@ -22,7 +22,7 @@ let test_to_int () =
   Test.(check int) "2 ^ 31 - 1" 2147483647 (Power.to_int (to_power 2147483647))
 
 let power_tests = [
-  "from_int", `Quick, test_from_int;
+  "of_int", `Quick, test_of_int;
   "to_int", `Quick, test_to_int;
 ]
 
