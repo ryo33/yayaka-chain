@@ -5,13 +5,13 @@ authors: ["Ryo Hashiguchi <ryo33@yayaka.org>"]
 license: "AGPL"
 bug-reports: "https://gitlib.com/yayaka/yayaka-chain/issues"
 homepage: "https://gitlib.com/yayaka/yayaka-chain"
-build-test: [
+run-test: [
   "dune runtest"
 ]
 depends: [
   "dune" {build}
-  "alcotest" {test}
+  "alcotest" {with-test}
   "core"
-  "digestif"
+  "bos"
 ]
 synopsis: "Manipulates yayaka-chains"
