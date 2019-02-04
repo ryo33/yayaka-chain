@@ -13,5 +13,7 @@ depends: [
   "alcotest" {with-test}
   "core"
   "bos"
+  "hex"
+  "base64"
 ]
 synopsis: "Manipulates yayaka-chains"
