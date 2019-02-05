@@ -2,10 +2,7 @@ open YayakaChain
 open HashAlgorithm
 module Test = Alcotest
 
-let pp ppf value =
-  match value with
-  | Sha1 -> Fmt.pf ppf "Sha1"
-  | Sha256 -> Fmt.pf ppf "Sha256"
+let pp ppf value = Fmt.pf ppf "%s" (to_string value)
 
 let hash_algorithm = Test.testable pp ( = )
 
