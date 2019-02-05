@@ -8,8 +8,10 @@ let hash_algorithm = Test.testable pp ( = )
 
 let test_of_string () =
   Test.(check (option hash_algorithm)) "sha1" (Some Sha1) (of_string "sha1");
+  Test.(check (option hash_algorithm)) "SHA1" (Some Sha1) (of_string "SHA1");
   Test.(check (option hash_algorithm)) "sha256" (Some Sha256) (of_string "sha256");
-  Test.(check (option hash_algorithm)) "Sha256" None (of_string "Sha256")
+  Test.(check (option hash_algorithm)) "sHa256" (Some Sha256) (of_string "sHa256");
+  Test.(check (option hash_algorithm)) "sha257" None (of_string "Sha257")
 
 let test_to_string () =
   Test.(check string) "sha1" "sha1" (to_string Sha1);

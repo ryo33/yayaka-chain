@@ -1,6 +1,10 @@
+open Core
+
 type t = Sha1 | Sha256
 
-let of_string = function
+let of_string value =
+  let value = String.lowercase value in
+  match value with
   | "sha1" -> Some Sha1
   | "sha256" -> Some Sha256
   | _ -> None
