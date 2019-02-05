@@ -1,12 +1,9 @@
 open Core
 open YayakaChain
 module Test = Alcotest
+open Support
 
 let to_int_option = Option.map ~f:Power.to_int
-let to_power value =
-  match (Power.of_int value) with
-  | Some power -> power
-  | _ -> raise (Failure "")
 
 let test_of_int () =
   Test.(check (option int)) "0" (Some 0) (to_int_option (Power.of_int 0));
