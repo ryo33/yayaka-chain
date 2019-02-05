@@ -1,6 +1,4 @@
-type t =
-  | Sha1
-  | Sha256
+type t = Sha1 | Sha256
 
 let of_string = function
   | "sha1" -> Some Sha1

@@ -1,3 +1,5 @@
 type t = {
   hash_algorithm : HashAlgorithm.t;
-  hash : string }
+  hash : string;
+  expires_at : ExpirationDateTime.t }
+
