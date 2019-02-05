@@ -8,12 +8,11 @@ let public_key_algorithm = Test.testable pp ( = )
 
 let test_of_string () =
   Test.(check (option public_key_algorithm)) "rsa" (Some RSA) (of_string "rsa");
-  Test.(check (option public_key_algorithm)) "RSA" (Some RSA) (of_string "RSA");
-  Test.(check (option public_key_algorithm)) "rSa" (Some RSA) (of_string "rSa");
-  Test.(check (option public_key_algorithm)) "RSA2" None (of_string "RSA2")
+  Test.(check (option public_key_algorithm)) "RSA" None (of_string "RSA");
+  Test.(check (option public_key_algorithm)) "Rsa" None (of_string "rSa")
 
 let test_to_string () =
-  Test.(check string) "RSA" "RSA" (to_string RSA)
+  Test.(check string) "RSA" "rsa" (to_string RSA)
 
 let public_key_algorithm_tests = [
   "of_string", `Quick, test_of_string;
