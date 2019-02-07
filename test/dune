@@ -1,3 +1,9 @@
 (tests
-  (names power_test hash_test hashAlgorithm_test publicKey_test publicKeyAlgorithm_test)
+  (names
+   power_test
+   hash_test
+   hashAlgorithm_test
+   publicKey_test
+   publicKeyAlgorithm_test
+   expirationDateTime_test)
   (libraries alcotest yayakaChain))
