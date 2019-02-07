@@ -1,8 +1,8 @@
 type t =
   | AddPublicKey of {
-    algorithm : string;
-    key : string;
-    power : Power.t }
+    algorithm : PublicKeyAlgorithm.t;
+    power : Power.t;
+    key : string }
   | RemovePublicKey of {
     fingerprint : string }
   | UpdatePower of {
@@ -12,3 +12,7 @@ type t =
     protocol : string;
     body : string }
   | Halt
+
+val format : t -> string
+
+val parse : string -> string list -> (t, string) result

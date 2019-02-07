@@ -6,3 +6,7 @@ let of_int value =
     Some { value = value }
 
 let to_int { value } = value
+
+let parse str =
+  try of_int (int_of_string str) with
+  | _ -> None
