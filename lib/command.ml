@@ -1,4 +1,5 @@
 open Core
+open Util
 
 type t =
   | AddPublicKey of {
@@ -49,11 +50,6 @@ let format = function
     %s"
     (3 + String.count body ~f:(( = ) '\n')) protocol body
 
-let combine3 r1 r2 r3 ~ok ~err =
-  Result.combine
-  (Result.combine r1 r2 ~ok:(fun r1 r2 -> r1, r2) ~err)
-  r3 ~ok:(fun (r1, r2) r3 -> ok r1 r2 r3) ~err
-
 let parse_power str =
   Power.parse str
   |> Result.of_option ~error:"failed to parse power"
@@ -67,7 +63,7 @@ let parse_add = function
     let algorithm = PublicKeyAlgorithm.of_string(algorithm) in
     let power = parse_power power in
     let key = String.concat ~sep:"\n" key in
-    combine3
+    combine3results
     (Result.of_option algorithm ~error:"failed to parse algorithm")
     power
     (if String.is_empty key then Error "key is blank" else Ok key)

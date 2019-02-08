@@ -7,5 +7,7 @@
    publicKeyAlgorithm_test
    expirationDateTime_test
    command_test
-   blockBody_test)
+   blockBody_test
+   util_test
+   signatureDeclaration_test)
   (libraries alcotest yayakaChain))
