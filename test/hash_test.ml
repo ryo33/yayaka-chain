@@ -7,7 +7,7 @@ let pp ppf = function
 
 let hash = Test.testable pp ( = )
 
-let h hex = Hex.to_string (`Hex hex)
+let h hex = Hex.to_string (`Hex hex) |> Base64.encode_exn
 
 let test_hash () =
   Test.(check hash) "a with sha1" {
@@ -28,13 +28,14 @@ let test_hash () =
     (Hash.hash Sha256 "abc")
 
 let test_format () =
-  Test.(check (pair string string)) "sha1"
-  ("sha1", "qZk+NkcGgWq6PiVxeFDCbJzQ2J0=")
+  Test.(check string) "sha1"
+  "sha1\nqZk+NkcGgWq6PiVxeFDCbJzQ2J0="
   (Hash.format {
     algorithm = Sha1;
     hash = (h "a9993e364706816aba3e25717850c26c9cd0d89d") });
-  Test.(check (pair string string)) "sha256"
-  ("sha256", "ungWv48Bz+pBQUDeXa4iI7ADYaOWF3qctBD/YfIAFa0=")
+
+  Test.(check string) "sha256"
+  "sha256\nungWv48Bz+pBQUDeXa4iI7ADYaOWF3qctBD/YfIAFa0="
   (Hash.format {
     algorithm = Sha256;
     hash = (h "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad") })

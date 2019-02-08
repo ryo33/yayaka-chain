@@ -4,6 +4,7 @@ module Test = Alcotest
 
 let test_format () =
   Test.(check string) "add" "\
+  7\n\
   add\n\
   rsa\n\
   2\n\
@@ -19,12 +20,14 @@ let test_format () =
     -----END PUBLIC KEY-----\n" })));
 
   Test.(check string) "remove" "\
+  2\n\
   remove\n\
   +gf0YWKHMzO0/mCFlB9AivKRlD0="
   (Command.(format (RemovePublicKey {
     fingerprint = "+gf0YWKHMzO0/mCFlB9AivKRlD0=" })));
 
   Test.(check string) "update" "\
+  3\n\
   update\n\
   +gf0YWKHMzO0/mCFlB9AivKRlD0=\n\
   3"
@@ -33,10 +36,12 @@ let test_format () =
     power = Option.value_exn (Power.of_int 3) })));
 
   Test.(check string) "halt" "\
+  1\n\
   halt"
   (Command.(format (Halt)));
 
   Test.(check string) "user" "\
+  4\n\
   user\n\
   some-protocol\n\
   some-command\n\

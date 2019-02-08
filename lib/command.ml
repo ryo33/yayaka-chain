@@ -18,30 +18,36 @@ type t =
 let format = function
   | AddPublicKey { algorithm; power; key } ->
     Format.sprintf "\
+    %d\n\
     add\n\
     %s\n\
     %d\n\
     %s"
+    (4 + String.count key ~f:(( = ) '\n'))
     (PublicKeyAlgorithm.to_string algorithm) (Power.to_int power) key
   | RemovePublicKey { fingerprint } ->
     Format.sprintf "\
+    2\n\
     remove\n\
     %s"
     fingerprint
   | UpdatePower { fingerprint; power; } ->
     Format.sprintf "\
+    3\n\
     update\n\
     %s\n\
     %d"
     fingerprint (Power.to_int power)
-  | Halt ->
-    "halt"
+  | Halt -> "\
+    1\n\
+    halt"
   | UserCommand { protocol; body } ->
     Format.sprintf "\
+    %d\n\
     user\n\
     %s\n\
     %s"
-    protocol body
+    (3 + String.count body ~f:(( = ) '\n')) protocol body
 
 let combine3 r1 r2 r3 ~ok ~err =
   Result.combine

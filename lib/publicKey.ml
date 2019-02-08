@@ -6,4 +6,4 @@ type t = {
 
 let fingerprint { fingerprint_algorithm; key; _ } =
   let Hash.{ hash; _ } = Hash.hash fingerprint_algorithm key in
-  Base64.encode_exn hash
+  hash

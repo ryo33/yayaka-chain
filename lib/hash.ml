@@ -8,7 +8,7 @@ let hash algorithm text =
   let unwrap = function
   | Ok result ->
     let hex = String.chop_prefix_exn ~prefix:"(stdin)= " result in
-    Hex.to_string (`Hex hex)
+    Hex.to_string (`Hex hex) |> Base64.encode_exn 
   | _ -> raise (Failure "") in
   match algorithm with
   | Sha1 ->
@@ -21,4 +21,4 @@ let hash algorithm text =
     { algorithm = algorithm; hash = unwrap result }
 
 let format { algorithm; hash } =
-  HashAlgorithm.to_string algorithm, Base64.encode_exn hash
+  HashAlgorithm.to_string algorithm ^ "\n" ^ hash
