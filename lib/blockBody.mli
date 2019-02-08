@@ -6,6 +6,7 @@ type t = {
   fingerprint_algorithm : HashAlgorithm.t;
   expires_at : ExpirationDateTime.t;
   minimum_required_power : Power.t;
-  commands : Command.t list; }
+  commands : Command.t list;
+  signature_declarations : SignatureDeclaration.t list }
 
 val format : t -> string
