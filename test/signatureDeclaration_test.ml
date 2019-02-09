@@ -4,22 +4,18 @@ module Test = Alcotest
 let test_format () =
   Test.(check string) "sha1 rsa" "\
   qZk+NkcGgWq6PiVxeFDCbJzQ2J0=\n\
-  sha1\n\
-  rsa"
+  sha1"
   (SignatureDeclaration.format SignatureDeclaration.{
     fingerprint = "qZk+NkcGgWq6PiVxeFDCbJzQ2J0=";
     hash_algorithm = HashAlgorithm.Sha1;
-    signature_algorithm = PublicKeyAlgorithm.RSA
   });
 
   Test.(check string) "sha2 rsa" "\
   QZk+NkcGgWq6PiVxeFDCbJzQ2J0=\n\
-  sha256\n\
-  rsa"
+  sha256"
   (SignatureDeclaration.format SignatureDeclaration.{
     fingerprint = "QZk+NkcGgWq6PiVxeFDCbJzQ2J0=";
     hash_algorithm = HashAlgorithm.Sha256;
-    signature_algorithm = PublicKeyAlgorithm.RSA
   })
 
 let pp ppf t = Fmt.pf ppf "%s" (SignatureDeclaration.format t)
@@ -31,30 +27,25 @@ let test_parse () =
   (Ok SignatureDeclaration.{
     fingerprint = "qZk+NkcGgWq6PiVxeFDCbJzQ2J0=";
     hash_algorithm = HashAlgorithm.Sha1;
-    signature_algorithm = PublicKeyAlgorithm.RSA
   })
   (SignatureDeclaration.parse
   ("qZk+NkcGgWq6PiVxeFDCbJzQ2J0=",
-  "sha1",
-  "rsa"));
+  "sha1"));
 
   Test.(check (result signature_declaration string)) "sha256 rsa"
   (Ok SignatureDeclaration.{
     fingerprint = "QZk+NkcGgWq6PiVxeFDCbJzQ2J0=";
     hash_algorithm = HashAlgorithm.Sha256;
-    signature_algorithm = PublicKeyAlgorithm.RSA
   })
   (SignatureDeclaration.parse
   ("QZk+NkcGgWq6PiVxeFDCbJzQ2J0=",
-  "sha256",
-  "rsa"));
+  "sha256"));
 
   Test.(check (result signature_declaration string)) "failed to parse"
-  (Error "fingerprint is blank\nfailed to parse signature_algorithm")
+  (Error "fingerprint is blank\nfailed to parse hash_algorithm")
   (SignatureDeclaration.parse
   ("",
-  "sha256",
-  "RSA"))
+  "Sha256"))
 
 let signature_declaration_tests = [
   "format", `Quick, test_format;

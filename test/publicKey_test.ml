@@ -5,18 +5,17 @@ open Support
 let test_fingerprint () =
   Test.(check string) "public key 1"
   "+gf0YWKHMzO0/mCFlB9AivKRlD0="
-  (PublicKey.fingerprint {
+  (PublicKey.fingerprint ~alg:HashAlgorithm.Sha1 {
     algorithm = PublicKeyAlgorithm.RSA;
-    fingerprint_algorithm = HashAlgorithm.Sha1;
     power = to_power 1;
     key = "-----BEGIN PUBLIC KEY-----\n\
     MB4wDQYJKoZIhvcNAQEBBQADDQAwCgIDAOCHAgMBAAE=\n\
     -----END PUBLIC KEY-----\n" });
+
   Test.(check string) "public key 2"
   "s71Ok1G01SONnQB8hirmj/ZDgb8="
-  (PublicKey.fingerprint {
+  (PublicKey.fingerprint ~alg:HashAlgorithm.Sha1 {
     algorithm = PublicKeyAlgorithm.RSA;
-    fingerprint_algorithm = HashAlgorithm.Sha1;
     power = to_power 1;
     key = "-----BEGIN PUBLIC KEY-----\n\
     MB4wDQYJKoZIhvcNAQEBBQADDQAwCgIDALy/AgMBAAE=\n\

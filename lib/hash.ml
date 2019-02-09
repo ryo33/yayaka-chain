@@ -5,11 +5,12 @@ open Bos
 type t = { algorithm : HashAlgorithm.t; hash : string }
 
 let hash algorithm text =
-  let unwrap = function
-  | Ok result ->
-    let hex = String.chop_prefix_exn ~prefix:"(stdin)= " result in
-    Hex.to_string (`Hex hex) |> Base64.encode_exn 
-  | _ -> raise (Failure "") in
+  let unwrap result =
+    result
+    |> Result.map ~f:(String.chop_prefix_exn ~prefix:"(stdin)= ")
+    |> Result.map ~f:(fun hex -> Hex.to_string (`Hex hex) |> Base64.encode_exn)
+    |> Result.map_error ~f:(fun _ -> Failure "")
+    |> Result.ok_exn in
   match algorithm with
   | Sha1 ->
     let cmd = Cmd.(v "openssl" % "dgst" % "-sha1" % "-hex") in

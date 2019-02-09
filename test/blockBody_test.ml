@@ -32,10 +32,8 @@ let test_format () =
   2\n\
   qZk+NkcGgWq6PiVxeFDCbJzQ2J0=\n\
   sha1\n\
-  rsa\n\
   +gf0YWKHMzO0/mCFlB9AivKRlD0=\n\
-  sha256\n\
-  rsa"
+  sha256\n"
   (BlockBody.format BlockBody.{
     version = "0.1";
     layer = 1;
@@ -64,12 +62,10 @@ let test_format () =
       SignatureDeclaration.{
         fingerprint = "qZk+NkcGgWq6PiVxeFDCbJzQ2J0=";
         hash_algorithm = HashAlgorithm.Sha1;
-        signature_algorithm = PublicKeyAlgorithm.RSA;
       };
       SignatureDeclaration.{
         fingerprint = "+gf0YWKHMzO0/mCFlB9AivKRlD0=";
         hash_algorithm = HashAlgorithm.Sha256;
-        signature_algorithm = PublicKeyAlgorithm.RSA;
       };
     ]
   });
@@ -86,7 +82,8 @@ let test_format () =
   sha1\n\
   0\n\
   \n\
-  0\n"
+  0\n\
+  \n"
   (BlockBody.format BlockBody.{
     version = "0.1";
     layer = 0;

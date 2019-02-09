@@ -16,7 +16,7 @@ type t = {
 let format {
   version; layer; previous_hash; hash_algorithm; fingerprint_algorithm;
   expires_at; minimum_required_power; commands; signature_declarations } =
-  Format.sprintf "YAYAKA %s\n%d\n%s\n%s\n%s\n%d\n%s\n%d\n%s\n%d\n%s"
+  Format.sprintf "YAYAKA %s\n%d\n%s\n%s\n%s\n%d\n%s\n%d\n%s\n%d\n%s\n"
   version
   layer
   (Option.value_map previous_hash ~f:YayakaHash.format ~default:"\n")
