@@ -51,3 +51,8 @@ let verify_rsa ~hash_algorithm ~key:PublicKey.{ key; _ } ~sign body =
 let verify ~sign:{ hash_algorithm; key; body } block =
   match key.PublicKey.algorithm with
   | RSA -> verify_rsa ~hash_algorithm ~key ~sign:body block
+
+let format { body; _ } =
+  Printf.sprintf "%d\n%s"
+  (1 + String.count body ~f:(( = ) '\n'))
+  body

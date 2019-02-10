@@ -8,3 +8,5 @@ val sign :
 
 val verify :
   sign:t -> BlockBody.t -> bool
+
+val format : t -> string

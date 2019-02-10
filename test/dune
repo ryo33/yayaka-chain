@@ -10,5 +10,6 @@
    blockBody_test
    util_test
    signatureDeclaration_test
-   signature_test)
+   signature_test
+   block_test)
   (libraries alcotest yayakaChain))
