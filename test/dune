@@ -11,5 +11,8 @@
    util_test
    signatureDeclaration_test
    signature_test
-   block_test)
+   block_test
+   commands_test
+   signatureDeclarations_test
+   signatures_test)
   (libraries alcotest yayakaChain))
